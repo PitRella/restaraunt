@@ -11,6 +11,10 @@ class DishViewSet(ModelViewSet):
     queryset = Dish.objects.all()
 
     def get_serializer_class(self):
+        """
+        Return appropriate serializer class.
+        :return:
+        """
         match self.action:
             case "list":
                 return DishOutSerializer
@@ -19,3 +23,11 @@ class DishViewSet(ModelViewSet):
 class MenuViewSet(ModelViewSet):
     queryset = DishMenu.objects.all()
     serializer_class = MenuSerializer
+
+    @action(detail=True, methods=["get"])
+    def dishes(self, request, pk=None):
+        """Retrieve all dishes attached to menu"""
+        menu = self.get_object()
+        dishes = menu.dishes.all()
+        serializer = DishOutSerializer(dishes, many=True)
+        return Response(serializer.data)
