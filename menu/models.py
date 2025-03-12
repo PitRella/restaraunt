@@ -21,6 +21,5 @@ class Dish(models.Model):
     grams = models.PositiveSmallIntegerField(verbose_name=_("Вага страви"))
     menus = models.ManyToManyField("DishMenu", related_name="dishes", verbose_name=_("Меню страви"))
 
-
     def __str__(self):
         return f"{self.name}"
