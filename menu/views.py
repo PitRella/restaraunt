@@ -5,13 +5,15 @@ from menu.serializers import ProvisionOutSerializer, MenuSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+from menu.swagger_schema import menu_documentation
+
 
 class ProvisionViewSet(ModelViewSet):
     """
     ViewSet for dishes.
     """
     queryset = Provision.objects.all()
-
+    http_method_names = ["get", "post", "put", "delete"]
     def get_serializer_class(self):
         """
         Return appropriate serializer class.
@@ -23,9 +25,11 @@ class ProvisionViewSet(ModelViewSet):
         return super().get_serializer_class()
 
 
+@menu_documentation
 class MenuViewSet(ModelViewSet):
     queryset = ProvisionMenu.objects.all()
     serializer_class = MenuSerializer
+    http_method_names = ["get", "post", "put", "delete"]
 
     @action(detail=True, methods=["get"])
     def dishes(self, request, pk=None):
