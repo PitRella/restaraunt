@@ -1,14 +1,14 @@
 from rest_framework.serializers import ModelSerializer
 
-from menu.models import Dish, DishMenu
+from menu.models import Provision, ProvisionMenu
 
 
-class DishOutSerializer(ModelSerializer):
+class ProvisionOutSerializer(ModelSerializer):
     """
     Base serializer for dish models, returns the most important fields.
     """
     class Meta:
-        model = Dish
+        model = Provision
         fields = [
             'name',
             'grams',
@@ -19,5 +19,5 @@ class DishOutSerializer(ModelSerializer):
 
 class MenuSerializer(ModelSerializer):
     class Meta:
-        model = DishMenu
+        model = ProvisionMenu
         fields = "__all__"

@@ -1,6 +1,6 @@
 import os
 
-def dish_image_path(instance: "Dish", filename: str) -> str:
+def provision_image_path(instance: "Provision", filename: str) -> str:
     """
     Create path for dish images.
     :param instance:

@@ -1,12 +1,12 @@
 from django.contrib import admin
-from menu.models import DishMenu, Dish
+from menu.models import ProvisionMenu, Provision
 
 
-@admin.register(DishMenu)
-class DishMenuAdmin(admin.ModelAdmin):
+@admin.register(ProvisionMenu)
+class ProvisionMenuAdmin(admin.ModelAdmin):
     list_display = ("name",)
 
-@admin.register(Dish)
-class DishAdmin(admin.ModelAdmin):
+@admin.register(Provision)
+class ProvisionAdmin(admin.ModelAdmin):
     raw_id_fields = ['menus',]
     prepopulated_fields = {"slug": ("name",)}
