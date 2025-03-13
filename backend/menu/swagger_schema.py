@@ -1,8 +1,44 @@
 from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiResponse
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND
 
-from menu.serializers import MenuSerializer, ProvisionOutSerializer
+from menu.serializers import MenuSerializer, ProvisionOutSerializer, ProvisionCreateSerializer
 
+provision_documentation = extend_schema_view(
+    list=extend_schema(
+        summary='Список всіх продуктів(напої на страви)',
+        responses={
+            HTTP_200_OK: ProvisionOutSerializer,
+        }
+    ),
+    update=extend_schema(
+        summary='Оновити продукт',
+        responses={
+            HTTP_200_OK: ProvisionOutSerializer,
+            HTTP_404_NOT_FOUND: OpenApiResponse(
+                response=None,
+                description='Страву за ID не знайдено'),
+        }
+    ),
+    create=extend_schema(
+        summary="Створити продукт",
+        responses={
+            HTTP_201_CREATED: ProvisionCreateSerializer,
+        }
+    ),
+    retrieve=extend_schema(
+        summary="Отримати продукт по ID",
+        responses={
+            HTTP_201_CREATED: ProvisionOutSerializer,
+        }
+    ),
+    destroy=extend_schema(
+        summary="Видалити продукт по  ID",
+        responses={
+            HTTP_204_NO_CONTENT: OpenApiResponse()
+        }
+    )
+
+)
 menu_documentation = extend_schema_view(
     list=extend_schema(
         summary="Отримати всі меню",

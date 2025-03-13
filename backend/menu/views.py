@@ -1,19 +1,21 @@
 from rest_framework.viewsets import ModelViewSet
 
 from menu.models import Provision, ProvisionMenu
-from menu.serializers import ProvisionOutSerializer, MenuSerializer
+from menu.serializers import ProvisionOutSerializer, MenuSerializer, ProvisionCreateSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from menu.swagger_schema import menu_documentation
+from menu.swagger_schema import menu_documentation, provision_documentation
 
 
+@provision_documentation
 class ProvisionViewSet(ModelViewSet):
     """
     ViewSet for dishes.
     """
     queryset = Provision.objects.all()
     http_method_names = ["get", "post", "put", "delete"]
+
     def get_serializer_class(self):
         """
         Return appropriate serializer class.
@@ -22,7 +24,9 @@ class ProvisionViewSet(ModelViewSet):
         match self.action:
             case "list":
                 return ProvisionOutSerializer
-        return super().get_serializer_class()
+            case "create":
+                return ProvisionCreateSerializer
+        return ProvisionOutSerializer
 
 
 @menu_documentation
