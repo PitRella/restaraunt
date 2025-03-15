@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'menu.apps.MenuConfig',
+    'orders.apps.OrdersConfig',
     'user.apps.UserConfig',
     # 3rd apps
     'rest_framework',
