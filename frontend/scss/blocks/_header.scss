@@ -12,7 +12,7 @@
 }
 
 .logo {
-  width: 100px;
+  width: 200px;
   padding-right: 5%;
 }
 
@@ -34,18 +34,6 @@
 
 .info-hours__img{
   display: flex;
-}
-
-.button-reserv {
-  color: var(--textColorButton);
-  background-color: var(--accent);
-  border-radius: 7px;
-  padding: 7px 15px;
-  text-decoration: none;
-}
-
-.button-reserv:hover {
-  background-color: #325047;
 }
 
 
@@ -142,7 +130,6 @@
 .main-page__content-right-img{
   min-width: 0;
   max-width: 100%;
-
 }
 
 .description {
@@ -175,9 +162,6 @@
 
 .description-item__text-content{
 
-}
-.spoon {
-  width: 34px;
 }
 
 .separator {
