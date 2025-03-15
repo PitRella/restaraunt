@@ -17,7 +17,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'menu.apps.MenuConfig',
-
+    'orders.apps.OrdersConfig',
+    'user.apps.UserConfig',
     # 3rd apps
     'rest_framework',
     'drf_spectacular',
@@ -82,5 +83,5 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 STATIC_URL = 'static/'
-
+AUTH_USER_MODEL = 'user.CustomUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
