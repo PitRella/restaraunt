@@ -283,7 +283,50 @@
         </div>
       </div>
     </div>
-    <div class="discount"></div>
+    <div class="discount">
+      <div class="main-page__title">
+        <p class="main-page__main-content main-page__title">Бронювання</p>
+        <img class="tracery" src="./img/main-page/header/tracery.svg" alt="">
+        <h1 class="title-center">Забронюй столик та отримуй знижку -10% на перший візит</h1>
+        <p class="main-page__title text-center"><br>Залишайте свій номер телефону та очікуйте дзвінка менеджера протягом 10 хв
+        </p>
+      </div>
+      <div class="placeholder">
+        <div class="placeholder__item">
+          <input type="tel" id="phone" class="phone-input" placeholder="Номер телефону +38 (___) ___-__-__">
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              let phoneInput = document.getElementById("phone");
+
+              phoneInput.addEventListener("input", function (e) {
+                let x = e.target.value.replace(/\D/g, "").slice(0, 12);
+                let formatted = "+38 ";
+
+                if (x.length > 2) {
+                  formatted += `(${x.slice(2, 5)}) `;
+                }
+                if (x.length > 5) {
+                  formatted += `${x.slice(5, 8)}-`;
+                }
+                if (x.length > 8) {
+                  formatted += `${x.slice(8, 10)}-`;
+                }
+                if (x.length > 10) {
+                  formatted += `${x.slice(10, 12)}`;
+                }
+
+                e.target.value = formatted.trim();
+              });
+            });
+          </script>
+        </div>
+        <a href="" class="button-accent">Надіслати</a>
+      </div>
+    </div>
+    <div class="big-tracery-container">
+      <img src="./img/main-page/header/tracery.svg" class="big-tracery" alt="">
+    </div>
 </main>
 <footer></footer>
 
