@@ -2,6 +2,8 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework.serializers import ModelSerializer, CharField, EmailField
 from user.models import CustomUser
 from django.core.exceptions import ValidationError
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 
 class UserOutSerializer(ModelSerializer):
     class Meta:
@@ -23,6 +25,7 @@ class UserRegisterSerializer(ModelSerializer):
         if CustomUser.objects.filter(email=value).exists():
             raise ValidationError("Этот email уже зарегистрирован.")
         return value
+
     def validate(self, data):
         password = data.get("password")
         retype_password = data.get("retype_password")
@@ -38,3 +41,13 @@ class UserRegisterSerializer(ModelSerializer):
         validated_data.pop("retype_password")
         user = CustomUser.objects.create_user(**validated_data)
         return user
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """Custom token obtain serializer to get token based not only on ID, also on email."""
+
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['email'] = user.email
+        return token

@@ -23,3 +23,10 @@ class UserViewSet(ModelViewSet):
             case "update" | "delete" | "retrieve":
                 return [IsAdminUser(), IsAuthenticated()]
         return super().get_permissions()
+
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    """Class View to get access token."""
+    serializer_class = CustomTokenObtainPairSerializer

@@ -85,6 +85,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 SIMPLE_JWT = {
+    'TOKEN_OBTAIN_SERIALIZER': 'user.serializers.CustomTokenObtainPairSerializer',
 }
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
