@@ -3,6 +3,7 @@ from pathlib import Path
 from datetime import timedelta
 import environ
 from django.core.management.utils import get_random_secret_key
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
@@ -15,19 +16,21 @@ DEBUG = env("DEBUG", False)
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
-    # local apps
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # custom apps
     'menu.apps.MenuConfig',
     'orders.apps.OrdersConfig',
     'user.apps.UserConfig',
     # 3rd apps
     'rest_framework',
     'drf_spectacular',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +90,27 @@ AUTH_PASSWORD_VALIDATORS = [
 SIMPLE_JWT = {
     'TOKEN_OBTAIN_SERIALIZER': 'user.serializers.CustomTokenObtainPairSerializer',
 }
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Restaurant API',
+    'DESCRIPTION': 'Документація API',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_SETTINGS': {
+        'persistAuthorization': True,
+    },
+    'COMPONENT_SPLIT_REQUEST': True,
+    'AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'http',
+            'scheme': 'bearer',
+            'bearerFormat': 'JWT',
+        }
+    },
+}
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
