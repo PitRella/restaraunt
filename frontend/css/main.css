@@ -203,7 +203,7 @@ html, body {
   padding: 40px 0;
 }
 
-.social__container {
+.main-content__container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -234,7 +234,7 @@ html, body {
 }
 
 @media (max-width: 1262px) {
-  .social__container {
+  .main-content__container {
     margin: 0;
     align-items: start;
     justify-content: center;
@@ -458,6 +458,45 @@ html, body {
     padding-top: 20px;
   }
 }
+.container-era {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 50px;
+  padding: 50px 0;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.era-item {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 400px;
+  text-align: center;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.era-item__image {
+  width: 100%;
+  height: auto;
+  max-width: 350px;
+}
+
+.era-item__title {
+  text-decoration: underline;
+}
+
+.description-item__title {
+  margin: 10px 0;
+}
+
+.era-content {
+  width: auto;
+  padding-bottom: 20px;
+}
+
 /*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
 /* main.scss 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
 /*

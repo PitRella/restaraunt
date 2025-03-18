@@ -19,7 +19,7 @@
   padding: 40px 0;
 }
 
-.social__container{
+.main-content__container{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -50,7 +50,7 @@
 }
 
 @media (max-width: 1262px) {
-  .social__container{
+  .main-content__container{
     margin: 0;
     align-items: start;
     justify-content: center;
