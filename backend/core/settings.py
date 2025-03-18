@@ -1,9 +1,17 @@
+import os
 from pathlib import Path
 from datetime import timedelta
-
+import environ
+from django.core.management.utils import get_random_secret_key
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure--=3dnvx%(&+*slb-w-(4-vpv)=_=@vj*+60f!6xql(jmz78lnb'
-DEBUG = True
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+SECRET_KEY = env("SECRET_KEY", default=None) or get_random_secret_key()
+
+DEBUG = env("DEBUG", False)
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
