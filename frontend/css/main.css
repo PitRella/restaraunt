@@ -856,6 +856,42 @@ html, body {
   transform: rotate(45deg);
 }
 
+.hall-images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 0;
+}
+
+.hall-images__item {
+  max-width: 350px;
+  padding-top: 20px;
+}
+
+.dislocation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 50px 0;
+}
+
+.dislocation__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  max-width: 500px;
+  padding: 0 40px;
+}
+
+.button-accent__container {
+  padding-top: 20px;
+}
+
 /*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
 /* main.scss 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
 /*
