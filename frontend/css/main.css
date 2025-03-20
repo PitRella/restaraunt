@@ -771,6 +771,91 @@ html, body {
     justify-content: center;
   }
 }
+.reviews-halls {
+  background-image: url("/frontend/img/main-page/discount/back.svg");
+}
+
+.halls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.halls__item {
+  max-width: 1200px;
+  padding: 40px 0;
+}
+
+.halls__item-link {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.halls__item-link img {
+  max-width: 334px;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.question__title {
+  padding: 40px 0;
+}
+
+.question-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.question-item__question-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.question-item__question-title {
+  font-size: 20px;
+  padding: 20px 0;
+}
+
+.plus {
+  width: 19px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.question-item__question-answer {
+  font-size: 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  opacity: 0;
+}
+
+.question-item.open .question-item__question-answer {
+  max-height: 500px; /* Достаточно большое значение, чтобы вместить текст */
+  opacity: 1;
+}
+
+.separator-halls {
+  width: 100%;
+  padding: 30px 0;
+}
+
+.question-item.open .plus {
+  transform: rotate(45deg);
+}
+
 /*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
 /* main.scss 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
 /*
