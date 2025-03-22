@@ -1,26 +1,36 @@
+import os
 from pathlib import Path
+from datetime import timedelta
+import environ
+from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure--=3dnvx%(&+*slb-w-(4-vpv)=_=@vj*+60f!6xql(jmz78lnb'
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+SECRET_KEY = env("SECRET_KEY", default=None) or get_random_secret_key()
 
-DEBUG = True
-
+DEBUG = env("DEBUG", False)
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
-    # local apps
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # custom apps
     'menu.apps.MenuConfig',
-
+    'orders.apps.OrdersConfig',
+    'user.apps.UserConfig',
     # 3rd apps
     'rest_framework',
     'drf_spectacular',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -32,9 +42,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'core.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -52,7 +60,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -61,6 +68,10 @@ DATABASES = {
 }
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+
 }
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -76,11 +87,34 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+SIMPLE_JWT = {
+    'TOKEN_OBTAIN_SERIALIZER': 'user.serializers.CustomTokenObtainPairSerializer',
+}
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Restaurant API',
+    'DESCRIPTION': 'Документація API',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_SETTINGS': {
+        'persistAuthorization': True,
+    },
+    'COMPONENT_SPLIT_REQUEST': True,
+    'AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'http',
+            'scheme': 'bearer',
+            'bearerFormat': 'JWT',
+        }
+    },
+}
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 STATIC_URL = 'static/'
-
+AUTH_USER_MODEL = 'user.CustomUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
