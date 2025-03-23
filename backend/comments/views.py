@@ -2,8 +2,10 @@ from rest_framework.viewsets import ModelViewSet
 
 from comments.models import Comment
 from comments.serializers import CommentSerializer
+from comments.swagger_schema import comments_documentation
 
 
+@comments_documentation
 class CommentsViewSet(ModelViewSet):
     """
     ViewSet for  comments.

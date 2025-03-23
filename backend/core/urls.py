@@ -3,6 +3,7 @@ from django.urls import include, path
 
 from rest_framework import routers
 
+from comments.views import CommentsViewSet
 from menu.views import ProvisionViewSet, MenuViewSet
 from drf_spectacular.views import SpectacularSwaggerView, SpectacularAPIView
 from rest_framework_simplejwt.views import (
@@ -13,6 +14,7 @@ router = routers.DefaultRouter()
 router.register(r"provision", ProvisionViewSet)
 router.register(r"menu", MenuViewSet)
 router.register(r"user", UserViewSet)
+router.register(r"comment", CommentsViewSet)
 
 urlpatterns = [
     # admin
