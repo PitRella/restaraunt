@@ -42,6 +42,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # local middleware
+    'core.middlewares.APILoggingMiddleware',
 ]
 ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
@@ -131,18 +133,33 @@ LOGGING = {
             "format": "[%(asctime)s] \"%(message)s\"",
             "datefmt": "%d/%b/%Y %H:%M:%S",
         },
+        "api_requests": {
+            "format": "[%(asctime)s] %(levelname)s [%(name)s] %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
     },
     "handlers": {
         "django_server_file": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": "logs/request.log",
+            "filename": "logs/django_server.log",
             "formatter": "django_server",
+        },
+        "api_requests_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "logs/api_requests.log",
+            "formatter": "api_requests",
         },
     },
     "loggers": {
         "django.server": {
             "handlers": ["django_server_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "api_requests": {
+            "handlers": ["api_requests_file"],
             "level": "INFO",
             "propagate": False,
         },
