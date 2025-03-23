@@ -180,7 +180,7 @@ function Home() {
                         <div className="accomplishments__buttons">
                             <a href="/bron" className="button-accent">Забронювати</a>
                             <a href="/our-halls" className="button-non-accent">Зали</a>
-                            <a href="/menu" className="button-non-accent">Меню</a>
+                            <a href="/menu/Menu" className="button-non-accent">Меню</a>
                         </div>
                     </div>
                     <div className="accomplishments__photo">
