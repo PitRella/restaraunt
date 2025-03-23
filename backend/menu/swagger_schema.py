@@ -5,7 +5,7 @@ from menu.serializers import MenuSerializer, ProvisionOutSerializer, ProvisionCr
 
 provision_documentation = extend_schema_view(
     list=extend_schema(
-        summary='Список всіх продуктів(напої на страви)',
+        summary='Список всіх продуктів(напої та страви)',
         responses={
             HTTP_200_OK: ProvisionOutSerializer,
         }
