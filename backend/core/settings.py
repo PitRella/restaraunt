@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'menu.apps.MenuConfig',
     'orders.apps.OrdersConfig',
     'user.apps.UserConfig',
+    'comments.apps.CommentsConfig',
     # 3rd apps
     'rest_framework',
     'drf_spectacular',
