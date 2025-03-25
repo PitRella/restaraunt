@@ -1,0 +1,48 @@
+.reviews {
+
+}
+
+.container-reviews {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+
+}
+
+.container-reviews__item {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+
+.content-review{
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* Ограничиваем до 3 строк */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+}
+.photo {
+  width: 250px;
+}
+
+.container-reviews__item-review {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.description-item__title {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .description-item__title{
+    font-size: 16px;
+    line-height: 1.3;
+  }
+}
