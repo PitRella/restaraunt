@@ -20,7 +20,7 @@ class UserViewSet(ModelViewSet):
                 return [AllowAny()]
             case 'list':
                 return [IsAdminUser()]
-            case "update" | "delete" | "retrieve":
+            case "update" | "delete" | "retrieve": 
                 return [IsAdminUser(), IsAuthenticated()]
         return super().get_permissions()
 

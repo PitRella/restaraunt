@@ -10,7 +10,7 @@ class APILoggingMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
 
-        if request.path.startswith("/api/"):  # Логируем только API-запросы
+        if request.path.startswith("/api/"):
             logger.info(
                 f"{request.method} {request.path} - {response.status_code} "
                 f"Headers: {dict(request.headers)}"
