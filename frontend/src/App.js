@@ -8,6 +8,8 @@ import Footer from './components/Footer';
 import Home from './page/Home';
 import Contacts from './page/Contacts';
 import Halls from './page/Halls';
+import Login from './page/Login';
+import Menu from './page/Menu';
 import HallDetails from "./page/HallDetails";
 import ScrollToTop from "./utils/scrollToTop";
 
@@ -24,6 +26,8 @@ function App() {
                 <Route path="/halls" element={<Halls />} />
                 <Route path="/hall/:id" element={<HallDetails />} />
                 <Route path="/contacts" element={<Contacts />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/menu" element={<Menu />} />
             </Routes>
             <Footer />
         </Router>

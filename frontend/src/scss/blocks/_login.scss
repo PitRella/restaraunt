@@ -1,0 +1,78 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem;
+
+}
+
+.login__tabs {
+  display: flex;
+  margin-bottom: 1.5rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tab {
+  padding: 0.75rem 2rem;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  color: var(--accent);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  background-color: var(--accent);
+  color: white;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login__input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 9999px;
+  border: none;
+  background-color: white;
+}
+
+.login__text {
+  font-size: 0.9rem;
+  text-align: center;
+  color: #2f2f2f;
+}
+
+.login__text a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login__button {
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  background-color: var(--accent);
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
+.login__button:hover {
+  background-color: var(--accent);
+}
+
+.button-nav{
+  color: var(--accent);
+}

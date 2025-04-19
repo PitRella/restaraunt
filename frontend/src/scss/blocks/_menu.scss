@@ -1,0 +1,93 @@
+.menu-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+.menu-tab-btn {
+  border: 0.5px solid var(--accent);
+  border-radius: 9999px;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--bodyColor);
+  cursor: pointer;
+  color: #325048FF;
+  transition: all 0.3s ease;
+}
+
+.menu-tab-btn.active {
+  background-color: var(--accent);
+  color: white;
+}
+
+.menu-tab-btn:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+.menu-block {
+  padding: 2rem;
+}
+
+.menu-block__title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: var(--accent);
+}
+
+.menu-block__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* фиксировано 2 карточки */
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+.menu-card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+  min-height: 150px;
+}
+
+.menu-card__image {
+  width: 200px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+
+.menu-card__info {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem 0;
+}
+
+.menu-card__name {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.menu-card__details {
+  font-size: 0.875rem;
+
+  color: #666;
+}
+
+.menu-card__price {
+  font-weight: bold;
+  padding: 1rem 0;
+  color: var(--accent);
+}

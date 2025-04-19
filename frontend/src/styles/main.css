@@ -91,7 +91,7 @@ legend {
   --bodyColor: #F6EBE3;
   --textColor: #000000;
   --textColorButton: #ffff;
-  --accent: #42695E;
+  --accent: #3d6056;
   --fontMain: "Cormorant SC", serif;
   --fontTitleSize: 32px;
   --fontContentSize: 16px;
@@ -891,6 +891,8 @@ html, body {
 .button-accent__container {
   padding-top: 20px;
 }
+
+
 
 /*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
 /* main.scss 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */

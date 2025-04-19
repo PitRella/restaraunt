@@ -160,12 +160,23 @@
 
 }
 
-.description-item__text-content{
-
+.nav-list__user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
 }
 
-.separator {
+.nav-list__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
 }
+
+.nav-list__username {
+  font-weight: bold;
+}
+
 
 @media (max-width: 1100px) {
   .main-page__main-content{

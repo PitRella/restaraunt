@@ -21,7 +21,7 @@ function Social() {
                             <div className="social__buttons">
                                 <a href="https://www.instagram.com/" className="button-accent">Instagram</a>
                                 <a href="/telegram" className="button-non-accent">Telegram</a>
-                                <a href="/our-halls" className="button-non-accent">Зали</a>
+                                <a href="/halls" className="button-non-accent">Зали</a>
                             </div>
                         </div>
                     </div>
