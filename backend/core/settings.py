@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
     'rest_framework_simplejwt.token_blacklist',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -42,6 +43,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # local middleware
+    'core.middlewares.APILoggingMiddleware',
 ]
 ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
@@ -119,3 +122,47 @@ USE_TZ = True
 STATIC_URL = 'static/'
 AUTH_USER_MODEL = 'user.CustomUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Logs
+LOG_DIR = BASE_DIR / "logs"
+LOG_DIR.mkdir(exist_ok=True)
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "django_server": {
+            "format": "[%(asctime)s] \"%(message)s\"",
+            "datefmt": "%d/%b/%Y %H:%M:%S",
+        },
+        "api_requests": {
+            "format": "[%(asctime)s] %(levelname)s [%(name)s] %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    "handlers": {
+        "django_server_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "logs/django_server.log",
+            "formatter": "django_server",
+        },
+        "api_requests_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "logs/api_requests.log",
+            "formatter": "api_requests",
+        },
+    },
+    "loggers": {
+        "django.server": {
+            "handlers": ["django_server_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "api_requests": {
+            "handlers": ["api_requests_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}
