@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from datetime import timedelta
 import environ
 from django.core.management.utils import get_random_secret_key
 
@@ -32,10 +31,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
     'rest_framework_simplejwt.token_blacklist',
-    'django_extensions',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -43,8 +43,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # local middleware
-    'core.middlewares.APILoggingMiddleware',
 ]
 ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
@@ -64,12 +62,24 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("POSTGRES_DB"),
+            "USER": os.getenv("POSTGRES_USER"),
+            "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+            "HOST": os.getenv("POSTGRES_HOST"),
+            "PORT": os.getenv("POSTGRES_PORT", "5432"),
+        }
+    }
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -119,50 +129,12 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 AUTH_USER_MODEL = 'user.CustomUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Logs
-LOG_DIR = BASE_DIR / "logs"
-LOG_DIR.mkdir(exist_ok=True)
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "django_server": {
-            "format": "[%(asctime)s] \"%(message)s\"",
-            "datefmt": "%d/%b/%Y %H:%M:%S",
-        },
-        "api_requests": {
-            "format": "[%(asctime)s] %(levelname)s [%(name)s] %(message)s",
-            "datefmt": "%Y-%m-%d %H:%M:%S",
-        },
-    },
-    "handlers": {
-        "django_server_file": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": "logs/django_server.log",
-            "formatter": "django_server",
-        },
-        "api_requests_file": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": "logs/api_requests.log",
-            "formatter": "api_requests",
-        },
-    },
-    "loggers": {
-        "django.server": {
-            "handlers": ["django_server_file"],
-            "level": "INFO",
-            "propagate": False,
-        },
-        "api_requests": {
-            "handlers": ["api_requests_file"],
-            "level": "INFO",
-            "propagate": False,
-        },
-    },
-}
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", ]
