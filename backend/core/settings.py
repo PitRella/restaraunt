@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'user.apps.UserConfig',
     'comments.apps.CommentsConfig',
+    'tables.apps.TablesConfig',
     # 3rd apps
     'rest_framework',
     'drf_spectacular',

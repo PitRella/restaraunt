@@ -12,12 +12,15 @@ from drf_spectacular.views import SpectacularSwaggerView, SpectacularAPIView
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
+
+from tables.views import TableViewSet
 from user.views import UserViewSet, CustomTokenObtainPairView
 router = routers.DefaultRouter()
 router.register(r"provision", ProvisionViewSet)
 router.register(r"menu", MenuViewSet)
 router.register(r"user", UserViewSet)
 router.register(r"comment", CommentsViewSet)
+router.register(r"table", TableViewSet)
 
 urlpatterns = [
     # admin
