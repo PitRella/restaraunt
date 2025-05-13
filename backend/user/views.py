@@ -3,7 +3,8 @@ from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from user.models import CustomUser
 from user.serializers import UserOutSerializer
 from user.swagger_schema import user_documentation
-
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
 
 @user_documentation
 class UserViewSet(ModelViewSet):
@@ -24,8 +25,7 @@ class UserViewSet(ModelViewSet):
                 return [IsAdminUser(), IsAuthenticated()]
         return super().get_permissions()
 
-from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomTokenObtainPairSerializer
+
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     """Class View to get access token."""
