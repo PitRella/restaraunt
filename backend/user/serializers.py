@@ -18,8 +18,7 @@ class UserRegisterSerializer(ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ("email", "first_name", "last_name", "avatar", "password", "retype_password")
-        read_only_fields = ("email",)
+        fields = ("email", "first_name", "last_name",'phone_number', "avatar", "password", "retype_password")
 
     def validate_email(self, value):
         if CustomUser.objects.filter(email=value).exists():
