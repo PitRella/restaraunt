@@ -7,7 +7,6 @@ class ProvisionOutSerializer(ModelSerializer):
     """
     Base serializer for dish models, returns the most important fields.
     """
-
     class Meta:
         model = Provision
         fields = [
@@ -42,7 +41,3 @@ class ProvisionCreateSerializer(ModelSerializer):
         ]
 
 
-class MenuSerializer(ModelSerializer):
-    class Meta:
-        model = ProvisionMenu
-        fields = "__all__"
