@@ -1,12 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomTokenObtainPairSerializer, UserRegisterSerializer
+from user.serializers.user import CustomTokenObtainPairSerializer, UserRegisterSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from user.models import CustomUser
-from user.serializers import UserOutSerializer
-from user.swagger_schema import user_documentation
+from user.serializers.user import UserOutSerializer
+from user.docs.user import user_documentation
 
 from rest_framework.decorators import action
 from rest_framework.response import Response

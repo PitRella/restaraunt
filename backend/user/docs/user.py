@@ -1,7 +1,7 @@
 from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiResponse
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND
 
-from user.serializers import UserOutSerializer
+from user.serializers.user import UserOutSerializer
 
 user_documentation = extend_schema_view(
     list=extend_schema(
