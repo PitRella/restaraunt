@@ -1,0 +1,11 @@
+from rest_framework.viewsets import ModelViewSet
+from orders.serializers import OrderSerializer
+from orders.models import Order
+
+class OrderViewSet(ModelViewSet):
+    """
+    ViewSet for orders.
+    """
+    queryset = Order.objects.all()
+    http_method_names = ["get", "post", "put", "delete"]
+
