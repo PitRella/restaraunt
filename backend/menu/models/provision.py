@@ -10,10 +10,11 @@ from django.db.models.fields.related import ManyToManyField
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
+from base.models import TimeStamp
 from menu.utils import provision_image_path
 
 
-class Provision(models.Model):
+class Provision(models.Model, TimeStamp):
     name: ClassVar[CharField] = models.CharField(
         max_length=100,
         verbose_name=_("Provision name")
