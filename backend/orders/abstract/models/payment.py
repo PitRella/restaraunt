@@ -1,11 +1,6 @@
 from django.db import models
-from typing import ClassVar
 from django.utils.translation import gettext_lazy as _
 
-from django.db.models import (
-    OneToOneField,
-    DecimalField
-)
 from base.models import TimeStamp
 
 

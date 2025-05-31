@@ -8,8 +8,7 @@ from menu.services import MenuServiceImpl
 from menu.docs import menu_documentation
 from rest_framework.request import Request
 
-from typing import TYPE_CHECKING, Optional
-
+from typing import Optional
 
 
 @menu_documentation

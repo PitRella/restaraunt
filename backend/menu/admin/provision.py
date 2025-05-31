@@ -1,5 +1,5 @@
 from django.contrib import admin
-from menu.models import ProvisionMenu, Provision
+from menu.models import Provision
 
 
 @admin.register(Provision)

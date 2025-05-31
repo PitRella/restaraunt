@@ -1,12 +1,3 @@
-from typing import ClassVar
-from django.db.models.fields import (
-    CharField,
-    SlugField,
-    TextField,
-    DecimalField,
-    PositiveSmallIntegerField
-)
-from django.db.models.fields.related import ManyToManyField
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 

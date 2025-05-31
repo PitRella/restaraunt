@@ -1,7 +1,6 @@
 import os
 
 
-
 def user_image_path(instance, filename: str) -> str:
     """
     Create path for user images.

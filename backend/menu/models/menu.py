@@ -1,7 +1,5 @@
-from typing import ClassVar
 
 from django.db import models
-from django.db.models.fields import CharField
 from django.utils.translation import gettext_lazy as _
 
 from base.models import TimeStamp
