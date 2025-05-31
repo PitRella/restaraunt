@@ -1,5 +1,5 @@
 from django.contrib.auth.password_validation import validate_password
-from rest_framework.serializers import ModelSerializer, CharField, EmailField
+from rest_framework.serializers import ModelSerializer, CharField
 from user.models import CustomUser
 from django.core.exceptions import ValidationError
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -18,11 +18,19 @@ class UserRegisterSerializer(ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ("email", "first_name", "last_name",'phone_number', "avatar", "password", "retype_password")
+        fields = (
+            "email",
+            "first_name",
+            "last_name",
+            'phone_number',
+            "avatar",
+            "password",
+            "retype_password"
+        )
 
     def validate_email(self, value):
         if CustomUser.objects.filter(email=value).exists():
-            raise ValidationError("Этот email уже зарегистрирован.")
+            raise ValidationError("Email already exists.")
         return value
 
     def validate(self, data):
@@ -30,7 +38,11 @@ class UserRegisterSerializer(ModelSerializer):
         retype_password = data.get("retype_password")
 
         if password != retype_password:
-            raise ValidationError({"retype_password": "Пароли не совпадают."})
+            raise ValidationError(
+                {
+                    "retype_password":
+                        "Passwords don't match."}
+            )
 
         validate_password(password)
 
@@ -43,7 +55,8 @@ class UserRegisterSerializer(ModelSerializer):
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    """Custom token obtain serializer to get token based not only on ID, also on email."""
+    """Custom token obtain serializer to get token
+     based not only on ID, also on email."""
 
     @classmethod
     def get_token(cls, user):

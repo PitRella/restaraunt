@@ -18,4 +18,3 @@ class Table(models.Model):
     class Meta:
         verbose_name = _('Table')
         verbose_name_plural = _('Tables')
-

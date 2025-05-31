@@ -1,7 +1,8 @@
 import os
 from typing import TYPE_CHECKING
 
-if TYPE_CHECKING: from menu.models import Provision
+if TYPE_CHECKING:
+    from menu.models import Provision
 
 
 def provision_image_path(instance: "Provision", filename: str) -> str:

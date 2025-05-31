@@ -1,3 +1,5 @@
+from typing import List
+
 from django.contrib.auth.base_user import BaseUserManager
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -40,15 +42,34 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     username = None
-    email = models.EmailField(_("Електронна пошта"), unique=True)
+    email = models.EmailField(
+        _("Електронна пошта"),
+        unique=True
+    )
 
-    first_name = models.CharField(_("Ім'я"), max_length=50)
-    last_name = models.CharField(_("Прізвище"), max_length=50)
-    phone_number = models.CharField(_("Номер телефону"), max_length=20, blank=True, null=True)
-    avatar = models.ImageField(_("Фотографія профілю"), upload_to=user_image_path, blank=True, null=True)
+    first_name = models.CharField(
+        _("Ім'я"),
+        max_length=50
+    )
+    last_name = models.CharField(
+        _("Прізвище"),
+        max_length=50
+    )
+    phone_number = models.CharField(
+        _("Номер телефону"),
+        max_length=20,
+        blank=True, null=True
+    )
+    avatar = models.ImageField(
+        _("Фотографія профілю"),
+        upload_to=user_image_path,
+        blank=True,
+        null=True
+    )
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS: List[str] = []
     objects = CustomUserManager()
+
     def __str__(self):
         return self.email

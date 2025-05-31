@@ -9,7 +9,8 @@ from menu.docs import menu_documentation
 
 from typing import TYPE_CHECKING, Optional
 
-if TYPE_CHECKING: from rest_framework.request import Request
+if TYPE_CHECKING:
+    from rest_framework.request import Request
 
 
 @menu_documentation
@@ -20,7 +21,7 @@ class MenuViewSet(ModelViewSet):
     database_service = MenuServiceImpl
 
     @action(detail=True, methods=["get"])
-    def dishes(self, request: Request, pk: Optional[str] = None):
+    def dishes(self, request: Request, pk: Optional[str] = None) -> Response:
         """Retrieve all dishes attached to menu"""
         dishes = MenuServiceImpl.get_dishes_from_menu(self.get_object)
         serializer = ProvisionOutSerializer(dishes, many=True)

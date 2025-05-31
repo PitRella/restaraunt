@@ -11,4 +11,3 @@ class MenuServiceImpl(MenuService):
     def get_dishes_from_menu(menu: ProvisionMenu) -> QuerySet[Provision]:
         """Returns dishes from menu."""
         return menu.dishes.all()
-

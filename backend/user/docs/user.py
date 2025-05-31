@@ -1,5 +1,14 @@
-from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiResponse
-from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND
+from drf_spectacular.utils import (
+    extend_schema_view,
+    extend_schema,
+    OpenApiResponse
+)
+from rest_framework.status import (
+    HTTP_200_OK,
+    HTTP_201_CREATED,
+    HTTP_204_NO_CONTENT,
+    HTTP_404_NOT_FOUND
+)
 
 from user.serializers.user import UserOutSerializer
 
@@ -12,7 +21,8 @@ user_documentation = extend_schema_view(
         }
     ),
     update=extend_schema(
-        summary='Оновити інформацію про користувача. Доступно для користувача та адміна.',
+        summary='Оновити інформацію про користувача.'
+                ' Доступно для користувача та адміна.',
         description="Оновити користувача по його ID.",
         responses={
             HTTP_200_OK: UserOutSerializer,
@@ -30,16 +40,20 @@ user_documentation = extend_schema_view(
         }
     ),
     retrieve=extend_schema(
-        summary="Отримати користувача по ID. Доступно для користувача та адміна.",
-        description="Отримати інформацію про конкретного користувача може лише адмін або сам користувач.",
+        summary="Отримати користувача по ID. Доступно для"
+                " користувача та адміна.",
+        description="Отримати інформацію про конкретного користувача "
+                    "може лише адмін або сам користувач.",
 
         responses={
             HTTP_201_CREATED: UserOutSerializer,
         }
     ),
     destroy=extend_schema(
-        summary="Видалити користувача по ID. Доступно для користувача та адміна.",
-        description="Видалити конкретного користувача може лише адмін або сам користувач.",
+        summary="Видалити користувача по ID."
+                " Доступно для користувача та адміна.",
+        description="Видалити конкретного користувача може лише"
+                    " адмін або сам користувач.",
         responses={
             HTTP_204_NO_CONTENT: OpenApiResponse()
         }

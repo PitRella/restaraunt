@@ -4,6 +4,7 @@ from django.db.models import QuerySet
 
 from menu.models import ProvisionMenu, Provision
 
+
 class MenuService(ABC):
 
     @staticmethod

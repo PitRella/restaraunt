@@ -6,7 +6,8 @@ from menu.models import ProvisionMenu, Provision
 class ProvisionMenuAdmin(admin.ModelAdmin):
     list_display = ("name",)
 
+
 @admin.register(Provision)
 class ProvisionAdmin(admin.ModelAdmin):
-    raw_id_fields = ['menus',]
+    raw_id_fields = ['menus', ]
     prepopulated_fields = {"slug": ("name",)}

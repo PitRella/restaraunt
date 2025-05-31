@@ -1,3 +1,5 @@
+from typing import Type, Union
+
 from menu.docs import provision_documentation
 from rest_framework.viewsets import ModelViewSet
 
@@ -13,11 +15,13 @@ class ProvisionViewSet(ModelViewSet):
     queryset = Provision.objects.all()
     http_method_names = ["get", "post", "put", "delete"]
 
-    def get_serializer_class(self):
-        """
-        Return appropriate serializer class.
-        :return:
-        """
+    def get_serializer_class(self) -> Type[
+        Union[
+            ProvisionOutSerializer,
+            ProvisionCreateSerializer
+        ]
+    ]:
+        """Return the appropriate serializer class."""
         match self.action:
             case "list":
                 return ProvisionOutSerializer

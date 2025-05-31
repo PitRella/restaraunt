@@ -6,6 +6,7 @@ from django.db import models
 from django.db.models import OneToOneField
 from rest_framework.fields import DateTimeField
 
+
 class Reserve(models.Model):
     """
     Model representing a reserving table in restaurant.
