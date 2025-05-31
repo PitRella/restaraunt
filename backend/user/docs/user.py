@@ -1,3 +1,5 @@
+from http.client import responses
+
 from drf_spectacular.utils import (
     extend_schema_view,
     extend_schema,
@@ -14,49 +16,54 @@ from user.serializers.user import UserOutSerializer
 
 user_documentation = extend_schema_view(
     list=extend_schema(
-        summary='Список всіх користувачів. Доступно тільки адміністратору',
-        description="Отримати список всіх користувачів які є в системі.",
+        summary='List of all users. Available only for administrator',
+        description="Get a list of all users in the system.",
         responses={
             HTTP_200_OK: UserOutSerializer,
         }
     ),
     update=extend_schema(
-        summary='Оновити інформацію про користувача.'
-                ' Доступно для користувача та адміна.',
-        description="Оновити користувача по його ID.",
+        summary='Update user information.'
+                ' Available for user and admin.',
+        description="Update user by their ID.",
         responses={
             HTTP_200_OK: UserOutSerializer,
             HTTP_404_NOT_FOUND: OpenApiResponse(
                 response=None,
-                description='Користувача за ID не знайдено'),
+                description='User with provided ID not found'),
         }
     ),
     create=extend_schema(
-        summary="Створити користувача. Не вимагає аутентифікації",
-        description="Створення користувача, не вимагає жодної аутентифікації.",
+        summary="Create user. No authentication required",
+        description="Create a user, no authentication required.",
 
         responses={
             HTTP_201_CREATED: UserOutSerializer,
         }
     ),
     retrieve=extend_schema(
-        summary="Отримати користувача по ID. Доступно для"
-                " користувача та адміна.",
-        description="Отримати інформацію про конкретного користувача "
-                    "може лише адмін або сам користувач.",
+        summary="Get user by ID. Available for"
+                " user and admin.",
+        description="Only admin or the user themselves can"
+                    " get information about specific user.",
 
         responses={
             HTTP_201_CREATED: UserOutSerializer,
         }
     ),
     destroy=extend_schema(
-        summary="Видалити користувача по ID."
-                " Доступно для користувача та адміна.",
-        description="Видалити конкретного користувача може лише"
-                    " адмін або сам користувач.",
+        summary="Delete user by ID."
+                " Available for user and admin.",
+        description="Only admin or the user themselves can"
+                    " delete specific user.",
         responses={
             HTTP_204_NO_CONTENT: OpenApiResponse()
         }
-    )
-
+    ),
+    registration=extend_schema(
+        summary="Create user",
+        description="Create user and get pair of tokens"),
+    responses={
+        HTTP_201_CREATED: UserOutSerializer,
+    }
 )
