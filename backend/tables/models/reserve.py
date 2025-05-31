@@ -11,22 +11,22 @@ class Reserve(models.Model):
     """
     Model representing a reserving table in restaurant.
     """
-    user: ClassVar[OneToOneField] = models.OneToOneField(
+    user = models.OneToOneField(
         "user.CustomUser",
         on_delete=models.CASCADE,
         verbose_name=_('Who created reservation')
     )
-    table: ClassVar[OneToOneField] = models.OneToOneField(
+    table = models.OneToOneField(
         "tables.Table",
         on_delete=models.CASCADE,
         verbose_name=_('Бронь столика')
     )
-    reserved_at: ClassVar[DateTimeField] = models.DateTimeField(
+    reserved_at = models.DateTimeField(
         auto_now=True,
         verbose_name=_(
             'Reserved at')
     )
-    updated_at: ClassVar[DateTimeField] = models.DateTimeField(
+    updated_at = models.DateTimeField(
         auto_now=True,
         verbose_name=_('Updated at')
     )

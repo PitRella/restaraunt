@@ -10,7 +10,7 @@ from orders.abstract.models import AbstractPayment
 
 class TerminalPayment(AbstractPayment):
     """Payment using terminal"""
-    terminal_id: ClassVar[CharField] = models.CharField(
+    terminal_id = models.CharField(
         max_length=50,
         verbose_name=_("Terminal ID"),
     )

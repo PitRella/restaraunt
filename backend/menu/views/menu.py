@@ -6,11 +6,10 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from menu.services import MenuServiceImpl
 from menu.docs import menu_documentation
+from rest_framework.request import Request
 
 from typing import TYPE_CHECKING, Optional
 
-if TYPE_CHECKING:
-    from rest_framework.request import Request
 
 
 @menu_documentation

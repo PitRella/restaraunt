@@ -12,7 +12,7 @@ from orders.abstract.models import AbstractPayment
 
 class CardPayment(AbstractPayment):
     """Payment using card online"""
-    card_last_digits: ClassVar[CharField] = models.CharField(
+    card_last_digits = models.CharField(
         max_length=4,
         verbose_name=_("Card last 4 numbers"),
     )

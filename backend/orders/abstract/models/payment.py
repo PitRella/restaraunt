@@ -9,15 +9,15 @@ from django.db.models import (
 from base.models import TimeStamp
 
 
-class AbstractPayment(models.Model, TimeStamp):
+class AbstractPayment(TimeStamp):
     """Abstract payment model"""
-    order: ClassVar[OneToOneField] = models.OneToOneField(
-        "orders.orders",
+    order = models.OneToOneField(
+        "orders.Order",
         on_delete=models.CASCADE,
         related_name="%(class)s_payment",
         verbose_name=_("Order")
     )
-    amount: ClassVar[DecimalField] = models.DecimalField(
+    amount = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         verbose_name=_("Amount")

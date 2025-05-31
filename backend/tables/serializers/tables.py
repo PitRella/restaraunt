@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 
 from tables.models import Table
-from tables.serializers import ReserveSerializer
+from tables.serializers.reserve import ReserveSerializer
 
 
 class TableSerializer(ModelSerializer):

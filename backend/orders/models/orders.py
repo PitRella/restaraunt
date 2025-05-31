@@ -27,44 +27,42 @@ class DeliveryType(enum.Enum):
         return [(key.value, key.name) for key in cls]
 
 
-class Order(models.Model, TimeStamp):
+class Order(TimeStamp):
     # Main fields
-    customer: ClassVar[ForeignKey] = models.ForeignKey(
+    customer = models.ForeignKey(
         "user.CustomUser",
         on_delete=models.CASCADE,
         related_name="orders",
         verbose_name=_("Customer")
     )
-    products: ClassVar[ManyToManyField] = models.ManyToManyField(
+    products = models.ManyToManyField(
         "menu.Provision",
         related_name="order_products",
         verbose_name=_("Products")
     )
-    delivery_type: ClassVar[
-        PositiveSmallIntegerField] = models.PositiveSmallIntegerField(
+    delivery_type = models.PositiveSmallIntegerField(
         choices=DeliveryType.choices(),
         verbose_name=_("Delivery type"),
     )
     # Order details
-    address: ClassVar[CharField] = models.CharField(
+    address = models.CharField(
         verbose_name=_("Delivery address"),
         max_length=255,
         null=True, blank=True,
     )
-    comment: ClassVar[TextField] = models.TextField(
+    comment = models.TextField(
         verbose_name=_("Comment to order"),
         null=True, blank=True
     )
-    is_quickly: ClassVar[BooleanField] = models.BooleanField(
+    is_quickly  = models.BooleanField(
         verbose_name=_("As soon as possible?"),
         null=True, blank=True,
         default=False
     )
-    tableware_amount: ClassVar[
-        PositiveSmallIntegerField] = models.PositiveSmallIntegerField(
+    tableware_amount = models.PositiveSmallIntegerField(
         verbose_name=_("Tableware amount")
     )
-    desired_time: ClassVar[DateTimeField] = models.DateTimeField(
+    desired_time = models.DateTimeField(
         verbose_name=_("Час отримання замовлення"),
         null=True, blank=True,
         default=None

@@ -14,36 +14,34 @@ from base.models import TimeStamp
 from menu.utils import provision_image_path
 
 
-class Provision(models.Model, TimeStamp):
-    name: ClassVar[CharField] = models.CharField(
+class Provision(TimeStamp):
+    name = models.CharField(
         max_length=100,
         verbose_name=_("Provision name")
     )
-    slug: ClassVar[SlugField] = models.SlugField(
+    slug = models.SlugField(
         unique=True
     )
-    image: ClassVar[models.ImageField] = models.ImageField(
+    image = models.ImageField(
         upload_to=provision_image_path,
         verbose_name=_("Image")
     )
-    description: ClassVar[TextField] = models.TextField(
+    description = models.TextField(
         max_length=500,
         verbose_name=_("Description")
     )
-    price: ClassVar[DecimalField] = models.DecimalField(
+    price = models.DecimalField(
         decimal_places=2,
         max_digits=10,
         verbose_name=_("Price")
     )
-    calories: ClassVar[
-        PositiveSmallIntegerField] = models.PositiveSmallIntegerField(
+    calories = models.PositiveSmallIntegerField(
         verbose_name=_("Calories")
     )
-    grams: ClassVar[
-        PositiveSmallIntegerField] = models.PositiveSmallIntegerField(
+    grams = models.PositiveSmallIntegerField(
         verbose_name=_("Weight")
     )
-    menus: ClassVar[ManyToManyField] = models.ManyToManyField(
+    menus = models.ManyToManyField(
         "ProvisionMenu",
         related_name="dishes",
         verbose_name=_("Dishes menu's")

@@ -1,23 +1,21 @@
-from typing import ClassVar
 
-from django.db.models import ForeignKey, TextField, BooleanField
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from base.models import TimeStamp
 
 
-class Comment(models.Model, TimeStamp):
-    author: ClassVar[ForeignKey] = models.ForeignKey(
+class Comment(TimeStamp):
+    author = models.ForeignKey(
         "user.CustomUser",
         on_delete=models.CASCADE,
         related_name='comments',
         verbose_name=_("Comment author")
     )
-    text: ClassVar[TextField] = models.TextField(
+    text = models.TextField(
         max_length=500,
         verbose_name=_("Comment text")
     )
-    is_approved: ClassVar[BooleanField] = models.BooleanField(
+    is_approved = models.BooleanField(
         default=False,
         verbose_name=_("Is comment approved?"))
 

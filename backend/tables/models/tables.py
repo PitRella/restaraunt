@@ -10,7 +10,7 @@ class Table(models.Model):
     """
     Model representing a table in restaurant.
     """
-    updated_at: ClassVar[DateTimeField] = models.DateTimeField(
+    updated_at = models.DateTimeField(
         auto_now=True,
         verbose_name=_('Updated at')
     )

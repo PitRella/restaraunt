@@ -16,11 +16,14 @@ class TimeStamp(models.Model):
         updated_at: Timestamp of the last update, updated automatically
     """
 
-    created_at: ClassVar[DateTimeField] = models.DateTimeField(
+    created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name=_("Created at")
     )
-    updated_at: ClassVar[DateTimeField] = models.DateTimeField(
+    updated_at = models.DateTimeField(
         auto_now=True,
         verbose_name=_("Updated at")
     )
+
+    class Meta:
+        abstract = True

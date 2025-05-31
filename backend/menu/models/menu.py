@@ -7,8 +7,8 @@ from django.utils.translation import gettext_lazy as _
 from base.models import TimeStamp
 
 
-class ProvisionMenu(models.Model, TimeStamp):
-    name: ClassVar[CharField] = models.CharField(
+class ProvisionMenu(TimeStamp):
+    name = models.CharField(
         max_length=255,
         verbose_name=_('Menu')
     )
