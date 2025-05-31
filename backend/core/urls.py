@@ -13,6 +13,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+from orders.views import OrderViewSet
 from tables.views import TableViewSet
 from user.views import UserViewSet, CustomTokenObtainPairView
 
@@ -22,6 +23,7 @@ router.register(r"menu", MenuViewSet)
 router.register(r"user", UserViewSet)
 router.register(r"comment", CommentsViewSet)
 router.register(r"table", TableViewSet)
+router.register(r"order", OrderViewSet)
 
 urlpatterns = [
     # admin
