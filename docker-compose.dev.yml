@@ -15,3 +15,15 @@ services:
       - "8000:8000"
     env_file:
       - backend/.env
+  react:
+    image: node:18-alpine
+    container_name: restaurant_react_dev
+    working_dir: /app/frontend
+    volumes:
+      - ./frontend:/app/frontend
+      - /app/frontend/node_modules
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm start"
+    environment:
+      - CHOKIDAR_USEPOLLING=true

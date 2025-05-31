@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+from typing import List
+
 import environ
 from django.core.management.utils import get_random_secret_key
 
@@ -12,7 +14,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env("SECRET_KEY", default=None) or get_random_secret_key()
 
 DEBUG = env("DEBUG", False)
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: List[str] = []
 
 INSTALLED_APPS = [
     # django apps
@@ -90,20 +92,25 @@ REST_FRAMEWORK = {
 }
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'NumericPasswordValidator',
     },
 ]
 SIMPLE_JWT = {
-    'TOKEN_OBTAIN_SERIALIZER': 'user.serializers.CustomTokenObtainPairSerializer',
+    'TOKEN_OBTAIN_SERIALIZER': 'user.serializers.'
+                               'CustomTokenObtainPairSerializer',
 }
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Restaurant API',
@@ -115,7 +122,8 @@ SPECTACULAR_SETTINGS = {
     },
     'COMPONENT_SPLIT_REQUEST': True,
     'AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework_simplejwt.authentication.'
+        'JWTAuthentication',
     ],
     'SECURITY_DEFINITIONS': {
         'Bearer': {
